@@ -2,11 +2,11 @@
 @()
 
 @main(title = "Construmarket | ASR-4") {
-    <h1>Solicitar Cotización</h1>
     <section>
         <div class="container">
             <div class="row">
                 <div class="col-12">
+                    <h1>Solicitar Cotización</h1>
                     @form(routes.QuoteController.sendQuote) {
                         @CSRF.formField
                         <button type="submit" class="btn btn-primary">Probar</button>
