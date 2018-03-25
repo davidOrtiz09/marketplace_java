@@ -1,10 +1,49 @@
-@()
+@(productos: Seq[model.Producto])
+
 <html>
     <head>
         <title>E-mail test</title>
         <meta charset="UTF-8">
+        <style>
+            table {
+                border-collapse: collapse;
+            }
+
+            table, th, td {
+                border: 1px solid black;
+            }
+            th, td {
+                padding: 10px;
+                text-align: left;
+            }
+            th {
+                text-align: center;
+            }
+        </style>
     </head>
     <body>
-        Aquí iría la cotización
+        <p>Estimado cliente</p>
+        <br/>
+        <p>Los siguientes son los productos solicitados en la cotización</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>SKU</th>
+                    <th>Nombre del producto</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(producto <- productos) {
+                    <tr>
+                        <td>@producto.id</td>
+                        <td>@producto.descripcion</td>
+                        <td>$@producto.precio</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <br/>
+        <p>Para más información por favor contáctese directamente a LumenConcept</p>
     </body>
 </html>
