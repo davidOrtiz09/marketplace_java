@@ -1,4 +1,4 @@
-package service;
+package service.compra;
 
 import dao.CompraDAO;
 import model.Compra;

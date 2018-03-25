@@ -1,4 +1,4 @@
-package service;
+package service.compra;
 
 import com.google.inject.ImplementedBy;
 import model.Compra;

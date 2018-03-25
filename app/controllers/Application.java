@@ -2,7 +2,7 @@ package controllers;
 
 import play.libs.concurrent.HttpExecutionContext;
 import play.mvc.*;
-import service.CompraService;
+import service.compra.CompraService;
 import javax.inject.Inject;
 import java.util.concurrent.CompletionStage;
 
