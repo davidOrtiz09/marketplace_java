@@ -1,9 +1,21 @@
-<!DOCTYPE html>
+@import model.Compra
+@(idCompra: Long)
 
-<html>
-    <head>
-        <title>Compra Exitosa</title>
-    </head>
-    <body>
-    </body>
-</html>
+@main("Compra exitosa") {
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-center">Compra exitosa</h1>
+
+                    <p>La compra fue realizada exitosamente</p>
+                    <p>Para ver el estado de la compra, haga click en el siguiente link</p>
+                    <a href="@routes.Application.mostrarCompra(idCompra)" class="btn btn-outline-primary">Ver estado de la compra</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+}

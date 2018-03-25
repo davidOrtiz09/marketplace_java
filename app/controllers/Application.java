@@ -17,9 +17,9 @@ public class Application extends Controller {
         this.httpExecutionContext = httpExecutionContext;
     }
 
-   public CompletionStage<Result> completarCompra(Long idCompraa) {
-        return compraService.completarCompra(idCompraa).thenApplyAsync(answer -> {
-            return ok(views.html.compraExitosa.render());
+   public CompletionStage<Result> completarCompra(Long idCompra) {
+        return compraService.completarCompra(idCompra).thenApplyAsync(answer -> {
+            return ok(views.html.compraExitosa.render(idCompra));
         },  httpExecutionContext.current());
     }
 

@@ -3,38 +3,58 @@
 
 @(compra: Compra)
 
-@main(s"Check in productos de ${compra.comprador.nombre} ${compra.comprador.apellido}") {
+@main("Estado de la compra") {
 
-    <h2>Check in productos de @compra.comprador.nombre @compra.comprador.apellido</h2>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-center">Check in productos de @compra.comprador.nombre @compra.comprador.apellido</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Descripcion</th>
-                <th>Precio</th>
-            </tr>
-        </thead>
-        <tbody>
-        @for(producto <- compra.productos){
-            <tr>
-                <td>@producto.id</td>
-                <td>@producto.descripcion</td>
-                <td>@producto.precio</td>
-        }
-        </tbody>
-    </table>
-    <div>
-        <div><h3>Total Compra</h3></div>
-    <div>@compra.getTotalCompra()</div>
-        @if(compra.estaCompleta){
-            <div><h3>La compra ya ha sido completada</h3></div>
-        }else{
-            @helper.form(action = helper.CSRF(Application.completarCompra(compra.id))){
-                <button type="submit">Comprar</button>
-            }
-        }
-    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Descripcion</th>
+                                <th>Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for(producto <- compra.productos) {
+                                <tr>
+                                    <td>@producto.id</td>
+                                    <td>@producto.descripcion</td>
+                                    <td>@producto.precio</td>
+
+                                </tr>
+                            }
+                            <tr>
+                                <td colspan="2">
+                                    <p class="text-right"><strong>Total Compra</strong></p>
+                                </td>
+                                <td>@compra.getTotalCompra()</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <td>
+                                    <div class="text-center">
+                                    @if(compra.estaCompleta) {
+                                        <strong>La compra ya ha sido completada</strong>
+                                    } else {
+                                        @helper.form(action = helper.CSRF(Application.completarCompra(compra.id))) {
+                                            <button class="btn btn-outline-success" type="submit">Comprar</button>
+                                        }
+                                    }
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
 }

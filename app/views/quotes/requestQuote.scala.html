@@ -9,7 +9,11 @@
                     <h1>Solicitar Cotización</h1>
                     @form(routes.QuoteController.sendQuote) {
                         @CSRF.formField
-                        <button type="submit" class="btn btn-primary">Probar</button>
+                        <div class="form-group">
+                            <label for="email">Correo electrónico</label>
+                            <input name="email" type="email" class="form-control" id="email">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Solicitar cotización</button>
                     }
                 </div>
             </div>

@@ -6,7 +6,6 @@
 GET     /                           controllers.Application.index
 
 GET     /compra/:id/usuario         controllers.Application.mostrarCompra(id: Long)
-
 POST    /compra/:id/procesada       controllers.Application.completarCompra(id: Long)
 
 GET     /solicitar-cotizacion      controllers.QuoteController.requestQuote
