@@ -12,7 +12,7 @@ crossScalaVersions := Seq("2.11.12", "2.12.4")
 
 testOptions in Test := Seq(Tests.Argument(TestFrameworks.JUnit, "-a", "-v"))
 
-libraryDependencies ++= Seq( javaJdbc , javaWs, evolutions, guice, "org.postgresql" % "postgresql" % "9.4.1208" )
+libraryDependencies ++= Seq( javaJdbc , javaWs, evolutions, guice, "org.postgresql" % "postgresql" % "9.4.1208", "com.amazonaws" % "aws-java-sdk-sqs" % "1.11.301" )
 
 unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/test" )
 
