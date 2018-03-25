@@ -24,7 +24,6 @@ public class CompraDAO {
         this.executionContext = executionContext;
     }
 
-
     public CompletionStage<Compra> getCompraByUsuario(Long id) {
 
         return supplyAsync(() ->

@@ -13,7 +13,6 @@ public class Application extends Controller {
 
     @Inject
     public Application(CompraService compraService, HttpExecutionContext httpExecutionContext){
-
         this.compraService = compraService;
         this.httpExecutionContext = httpExecutionContext;
     }
