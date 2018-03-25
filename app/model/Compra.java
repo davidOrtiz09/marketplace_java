@@ -25,6 +25,14 @@ public class Compra extends BaseModel{
     public Boolean estaCompleta;
 
 
+    public Compra(Long id, Usuario comprador, List<Producto> productos, Boolean estaCompleta) {
+        this.id = id;
+        this.comprador = comprador;
+        this.productos = productos;
+        this.estaCompleta = estaCompleta;
+    }
+
+
     public Double getTotalCompra() {
         Double total = 0D;
         for(Producto producto : productos) {

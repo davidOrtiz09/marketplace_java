@@ -1,4 +1,4 @@
-package dao.config;
+package dao;
 
 import akka.actor.ActorSystem;
 import play.libs.concurrent.CustomExecutionContext;

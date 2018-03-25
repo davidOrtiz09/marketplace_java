@@ -1,12 +1,8 @@
 package service;
 
-import dao.config.CompraDAO;
+import dao.CompraDAO;
 import model.Compra;
-import model.Id;
-import model.Usuario;
-
 import javax.inject.Inject;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
 public class CompraServiceImpl implements CompraService {
@@ -18,9 +14,16 @@ public class CompraServiceImpl implements CompraService {
         this.compraDAO = compraDAO;
     }
 
-    public CompletionStage<Compra> getCompraByUsuario(Id<Usuario> id) {
+    public CompletionStage<Compra> getCompraByUsuario(Long id) {
 
         return  compraDAO.getCompraByUsuario(id);
+    }
+
+    public CompletionStage<Long> completarCompra(Long id) {
+        return compraDAO.getCompraByUsuario(id)
+                .thenApplyAsync(compra -> new Compra(compra.id, compra.comprador, compra.productos, true))
+                .thenComposeAsync( compra ->
+                        compraDAO.update(id, compra));
     }
 
 }

@@ -1,14 +1,8 @@
 package controllers;
 
-import model.Id;
-import model.Usuario;
-import play.*;
 import play.libs.concurrent.HttpExecutionContext;
 import play.mvc.*;
-
 import service.CompraService;
-import views.html.*;
-
 import javax.inject.Inject;
 import java.util.concurrent.CompletionStage;
 
@@ -24,15 +18,13 @@ public class Application extends Controller {
         this.httpExecutionContext = httpExecutionContext;
     }
 
-   /* public CompletionStage<Result> completarCompra(Long idCompraPlana) {
-        Id<Usuario> idUsuario = new Id<>(idCompraPlana);
-        return compraService.getCompraByUsuario(idUsuario).thenApplyAsync(answer -> {
-            return ok(views.html.mostrarCompra.render(answer));
+   public CompletionStage<Result> completarCompra(Long idCompraa) {
+        return compraService.completarCompra(idCompraa).thenApplyAsync(answer -> {
+            return ok(views.html.compraExitosa.render());
         },  httpExecutionContext.current());
-    }*/
+    }
 
-    public CompletionStage<Result> mostrarCompra(Long idUsuarioPlano) {
-        Id<Usuario> idUsuario = new Id<>(idUsuarioPlano);
+    public CompletionStage<Result> mostrarCompra(Long idUsuario) {
             return compraService.getCompraByUsuario(idUsuario).thenApplyAsync(answer -> {
              return ok(views.html.mostrarCompra.render(answer));
             },  httpExecutionContext.current());
