@@ -1,0 +1,33 @@
+@import model.Compra
+
+@(compra: Compra)
+
+@main(s"Check in productos de ${compra.comprador.nombre} ${compra.comprador.apellido}") {
+
+    <h2>Check in productos de @compra.comprador.nombre @compra.comprador.apellido</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Descripcion</th>
+                <th>Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+        @for(producto <- compra.productos){
+            <tr>
+                <td>@producto.id</td>
+                <td>@producto.descripcion</td>
+                <td>@producto.precio</td>
+        }
+        </tbody>
+    </table>
+    <div>
+        <div><h3>Total Compra</h3></div>
+    <div>@compra.getTotalCompra()</div>
+        <button type="submit">Comprar</button>
+    </div>
+
+
+}
