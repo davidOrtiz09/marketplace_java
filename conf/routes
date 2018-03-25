@@ -9,7 +9,7 @@ GET     /compra/:id/usuario         controllers.Application.mostrarCompra(id: Lo
 
 POST    /compra/:id/procesada       controllers.Application.completarCompra(id: Long)
 
-GET     /soliccitar-cotizacion      controllers.QuoteController.requestQuote
+GET     /solicitar-cotizacion      controllers.QuoteController.requestQuote
 GET     /cotizacion-enviada         controllers.QuoteController.sendQuote
 
 # Map static resources from the /public folder to the /assets URL path
