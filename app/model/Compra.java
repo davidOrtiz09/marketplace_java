@@ -1,20 +1,29 @@
 package model;
 
-import java.util.ArrayList;
+import io.ebean.Finder;
+import play.data.validation.Constraints;
 
-public class Compra {
+import javax.persistence.*;
+import java.util.List;
 
-    public Id<Compra> id;
+@Entity
+@Table(name = "compras")
+public class Compra extends BaseModel{
+
+    @ManyToOne
+    @JoinColumn(name="id_comprador")
     public Usuario comprador;
-    public ArrayList<Producto> productos;
+
+
+    @ManyToMany
+    @JoinTable(name="compras_de_productos",
+            joinColumns=@JoinColumn(name="id_compra", referencedColumnName="id"),
+            inverseJoinColumns=@JoinColumn(name="id_producto", referencedColumnName="id"))
+    public List<Producto> productos;
+
+    @Constraints.Required
     public Boolean estaCompleta;
 
-    public Compra(Id<Compra> id, Usuario comprador, ArrayList<Producto> productos) {
-        this.id = id;
-        this.comprador = comprador;
-        this.productos = productos;
-        this.estaCompleta = false;
-    }
 
     public Double getTotalCompra() {
         Double total = 0D;
@@ -27,4 +36,7 @@ public class Compra {
     public void completarCompra() {
         this.estaCompleta = true;
     }
+
+    public static final Finder<Long, Compra> find = new Finder<>(Compra.class);
+
 }

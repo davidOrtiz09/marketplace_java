@@ -1,14 +1,20 @@
 package model;
 
-public class Producto {
+import io.ebean.Finder;
+import play.data.validation.Constraints;
 
-    public Producto(Id<Producto> id, String descripcion, Double precio){
-        this.id = id;
-        this.descripcion = descripcion;
-        this.precio = precio;
-    }
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
-    public Id<Producto> id ;
+@Entity
+@Table(name = "productos")
+public class Producto extends BaseModel {
+
+    @Constraints.Required
     public String descripcion;
+
+    @Constraints.Required
     public Double precio;
+
+    public static final Finder<Long, Producto> find = new Finder<>(Producto.class);
 }

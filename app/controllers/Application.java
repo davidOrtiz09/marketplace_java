@@ -24,12 +24,12 @@ public class Application extends Controller {
         this.httpExecutionContext = httpExecutionContext;
     }
 
-    public CompletionStage<Result> completarCompra(Long idCompraPlana) {
+   /* public CompletionStage<Result> completarCompra(Long idCompraPlana) {
         Id<Usuario> idUsuario = new Id<>(idCompraPlana);
         return compraService.getCompraByUsuario(idUsuario).thenApplyAsync(answer -> {
             return ok(views.html.mostrarCompra.render(answer));
         },  httpExecutionContext.current());
-    }
+    }*/
 
     public CompletionStage<Result> mostrarCompra(Long idUsuarioPlano) {
         Id<Usuario> idUsuario = new Id<>(idUsuarioPlano);

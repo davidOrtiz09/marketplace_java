@@ -1,15 +1,20 @@
 package model;
 
-public class Usuario {
+import javax.persistence.*;
 
-    public Usuario(Id<Usuario> id, String nombre, String apellido) {
-        this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
-    }
+import io.ebean.*;
+import play.data.validation.*;
 
-    public Id<Usuario> id ;
+@Entity
+@Table(name = "usuarios")
+public class Usuario extends BaseModel {
+
+    @Constraints.Required
     public String nombre;
+
+    @Constraints.Required
     public String apellido;
+
+    public static final Finder<Long, Usuario> find = new Finder<>(Usuario.class);
 
 }

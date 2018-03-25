@@ -20,12 +20,7 @@ public class CompraServiceImpl implements CompraService {
 
     public CompletionStage<Compra> getCompraByUsuario(Id<Usuario> id) {
 
-        return CompletableFuture.completedFuture(compraDAO.getCompraByUsuario(id));
+        return  compraDAO.getCompraByUsuario(id);
     }
 
-    public CompletionStage<Compra> completarCompra(Id<Compra> id) {
-
-        Id<Usuario> idUsuario = new Id<>(2L);
-        return CompletableFuture.completedFuture(compraDAO.getCompraByUsuario(idUsuario));
-    }
 }

@@ -12,7 +12,5 @@ public interface CompraService {
 
     public CompletionStage<Compra> getCompraByUsuario(Id<Usuario> id);
 
-    public CompletionStage<Compra> completarCompra(Id<Compra> id);
-
 }
 

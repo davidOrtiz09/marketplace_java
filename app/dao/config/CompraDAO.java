@@ -1,41 +1,36 @@
 package dao.config;
 
+import io.ebean.Ebean;
+import io.ebean.EbeanServer;
 import model.Compra;
 import model.Id;
-import model.Producto;
 import model.Usuario;
+import play.db.ebean.EbeanConfig;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
+import java.util.concurrent.CompletionStage;
+
+import static java.util.concurrent.CompletableFuture.supplyAsync;
+
 
 public class CompraDAO {
 
+    private final EbeanServer ebeanServer;
     private final DatabaseExecutionContext executionContext;
 
     @Inject
-    public CompraDAO(DatabaseExecutionContext executionContext){
+    public CompraDAO(DatabaseExecutionContext executionContext, EbeanConfig ebeanConfig){
+
+        this.ebeanServer = Ebean.getServer(ebeanConfig.defaultServer());
         this.executionContext = executionContext;
     }
 
-    Id<Compra> idCompra = new Id<>(1L);
-    Id<Usuario> idusuario = new Id<>(20L);
-    Id<Producto> idProducto1 = new Id<>(31L);
-    Id<Producto> idProducto2 = new Id<>(32L);
 
-    String nombre = "David";
-    String apellido = "Ortiz";
-    Usuario usuario = new Usuario(idusuario, nombre, apellido);
+    public CompletionStage<Compra> getCompraByUsuario(Id<Usuario> id) {
 
-    Producto producto1 = new Producto(idProducto1, "bombillo", 5000D);
-    Producto producto2 = new Producto(idProducto2, "lampara", 45000D);
+        return supplyAsync(() ->
+                ebeanServer.find(Compra.class).setId(1L).findUnique()
+        , executionContext);
 
-
-    public Compra getCompraByUsuario(Id<Usuario> id) {
-
-        ArrayList<Producto> productos = new ArrayList<>();
-        productos.add(producto1);
-        productos.add(producto2);
-
-        return new Compra(idCompra, usuario, productos);
     }
 }
