@@ -24,11 +24,20 @@ public class CompraDAO {
         this.executionContext = executionContext;
     }
 
-    public CompletionStage<Compra> getCompraByUsuario(Long id) {
+    public CompletionStage<Compra> getCompraById(Long id) {
 
         return supplyAsync(() ->
                 ebeanServer.find(Compra.class).setId(id).findUnique()
         , executionContext);
+
+    }
+
+    public CompletionStage<Compra> getCompraByComprador(Long idComprador) {
+
+        return supplyAsync(() ->
+                        ebeanServer.find(Compra.class).where()
+                .eq("id_comprador", idComprador).findUnique()
+                , executionContext);
 
     }
 

@@ -8,7 +8,7 @@ import java.util.concurrent.CompletionStage;
 @ImplementedBy(CompraServiceImpl.class)
 public interface CompraService {
 
-    public CompletionStage<Compra> getCompraByUsuario(Long id);
+    public CompletionStage<Compra> getCompraByUsuario(Long idComprador);
 
     public CompletionStage<Long> completarCompra(Long id);
 

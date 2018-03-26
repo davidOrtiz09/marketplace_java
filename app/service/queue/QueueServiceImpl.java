@@ -1,26 +1,38 @@
 package service.queue;
 
-import com.amazonaws.services.sqs.AmazonSQS;
-import com.amazonaws.services.sqs.AmazonSQSClient;
-import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
-import com.amazonaws.services.sqs.model.SendMessageRequest;
 
-import javax.inject.Inject;
+
+import com.amazonaws.client.builder.AwsClientBuilder;
+import com.amazonaws.services.sqs.AmazonSQSAsync;
+import com.amazonaws.services.sqs.AmazonSQSAsyncClientBuilder;
+import com.amazonaws.services.sqs.model.SendMessageRequest;
+import com.amazonaws.services.sqs.model.SendMessageResult;
+import model.Producto;
+
+import java.util.List;
+
 
 public class QueueServiceImpl implements QueueService {
-    private final AmazonSQS sqs;
-    private final static String QUEUE_URL = "https://sqs.us-east-1.amazonaws.com/803611297537/marketplace_grupo4";
 
-    @Inject
-    public QueueServiceImpl(){
-        this.sqs = AmazonSQSClientBuilder.defaultClient();
+    private String queueUrl = "marketplace_grupo4";
+    private String sqsUrl = "https://sqs.us-east-1.amazonaws.com/803611297537/marketplace_grupo4";
+    private String sqsRegion = "us-east-1";
+
+
+     private AmazonSQSAsync sqsClient = AmazonSQSAsyncClientBuilder
+            .standard()
+            .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(sqsUrl, sqsRegion))
+            .build();
+
+
+    public Long sendMessage(List<Producto> productos) {
+        StringBuilder message = new StringBuilder();
+        for(Producto producto: productos){
+            message.append(producto.id.toString()).append("-");
+        }
+        SendMessageResult result = sqsClient.sendMessage(new SendMessageRequest(sqsUrl, message.toString()));
+        return 1L;
     }
 
-    public void sendMessage(String message){
-        SendMessageRequest send_msg_request = new SendMessageRequest()
-                .withQueueUrl(QUEUE_URL)
-                .withMessageBody(message)
-                .withDelaySeconds(5);
-        sqs.sendMessage(send_msg_request);
-    }
+
 }

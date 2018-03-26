@@ -41,9 +41,6 @@ public class Compra extends BaseModel{
         return total;
     }
 
-    public void completarCompra() {
-        this.estaCompleta = true;
-    }
 
     public static final Finder<Long, Compra> find = new Finder<>(Compra.class);
 

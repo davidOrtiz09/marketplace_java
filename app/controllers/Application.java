@@ -34,7 +34,7 @@ public class Application extends Controller {
     }
 
     public Result index() {
-        queueService.sendMessage("TEST");
+        //queueService.sendMessage("TEST");
         return ok(views.html.index.render("Your new application is ready."));
     }
 
