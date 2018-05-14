@@ -33,7 +33,7 @@ sonarProperties ++= Map(
   "sonar.projectKey" -> "com.arquisoft.grupo4.marketplace_java",
   "sonar.organization" -> "arquisoft-grupo4",
 
-  "sonar.projectName" -> "Marketplace",
+  "sonar.projectName" -> "Marketplace Java",
   "sonar.projectVersion" -> "1.0",
 
   "sonar.sources" -> "app",
