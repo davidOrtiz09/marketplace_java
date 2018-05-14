@@ -1,8 +1,8 @@
 name := "marketplace"
- 
-version := "1.0" 
-      
-lazy val `marketplace` = (project in file(".")).enablePlugins(PlayJava, PlayEbean)
+
+version := "1.0"
+
+lazy val `marketplace` = (project in file(".")).enablePlugins(PlayJava, PlayEbean, SonarRunnerPlugin)
 
 resolvers += "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases"
 
@@ -25,8 +25,21 @@ libraryDependencies ++= Seq(
 
   "it.innove" % "play2-pdf" % "1.8.0"
 )
-unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/test" )
+unmanagedResourceDirectories in Test <+= baseDirectory(_ / "target/web/public/test")
 
 playEbeanDebugLevel := 4
 
-      
+sonarProperties ++= Map(
+  "sonar.projectKey" -> "com.arquisoft.grupo4",
+  "sonar.organization" -> "arquisoft-grupo4",
+
+  "sonar.projectName" -> "Marketplace",
+  "sonar.projectVersion" -> "1.0",
+
+  "sonar.sources" -> "app",
+  "sonar.language" -> "java",
+  "sonar.java.binaries" -> "target/web/classes",
+
+  "sonar.host.url" -> "https://sonarcloud.io",
+  "sonar.login" -> "312f45313caba9bf8d56b1f31d7bbdc12cf4d9ed"
+)
