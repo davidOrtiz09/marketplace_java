@@ -30,7 +30,7 @@ unmanagedResourceDirectories in Test <+= baseDirectory(_ / "target/web/public/te
 playEbeanDebugLevel := 4
 
 sonarProperties ++= Map(
-  "sonar.projectKey" -> "com.arquisoft.grupo4",
+  "sonar.projectKey" -> "com.arquisoft.grupo4.marketplace_java",
   "sonar.organization" -> "arquisoft-grupo4",
 
   "sonar.projectName" -> "Marketplace",
