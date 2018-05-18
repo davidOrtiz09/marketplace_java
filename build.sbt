@@ -36,7 +36,7 @@ sonarProperties ++= Map(
   "sonar.projectName" -> "Marketplace Java",
   "sonar.projectVersion" -> "1.0",
 
-  "sonar.sources" -> "app",
+  "sonar.sources" -> "app,conf",
   "sonar.language" -> "java",
   "sonar.java.binaries" -> "target/web/classes",
 
