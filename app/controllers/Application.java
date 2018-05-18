@@ -1,5 +1,7 @@
 package controllers;
 
+import model.Tarjeta;
+import model.TarjetaBodyParser;
 import play.libs.concurrent.HttpExecutionContext;
 import play.mvc.*;
 import service.compra.CompraService;
@@ -36,6 +38,13 @@ public class Application extends Controller {
     public Result index() {
         //queueService.sendMessage("TEST");
         return ok(views.html.index.render("Your new application is ready."));
+    }
+
+    @BodyParser.Of(TarjetaBodyParser.class)
+    public Result recibirTarjeta() {
+        Http.RequestBody body = request().body();
+        Tarjeta tarjeta = body.as(Tarjeta.class);
+        return ok("Tarjeta agregado correctamente");
     }
 
 }
